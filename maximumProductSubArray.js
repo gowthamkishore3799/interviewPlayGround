@@ -1,3 +1,9 @@
+/**
+ * Kandane Algorithm
+ * 
+ */
+
+
 var maxProduct = function(nums) {
 
     let local_max = nums[0];
