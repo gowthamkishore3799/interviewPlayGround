@@ -16,7 +16,7 @@ var maxProduct = function(nums) {
     for(let i=1; i< nums.length; i++){
 
 
-        if(nums[i]<0 && i>0){
+        if(nums[i]<0){
             [local_max, local_min] = [local_min, local_max]
         }
  
@@ -32,4 +32,4 @@ var maxProduct = function(nums) {
 };
 
 
-console.log(maxProduct([2, 3, -4, 2]))
+console.log(maxProduct([-2,3, 1]))
