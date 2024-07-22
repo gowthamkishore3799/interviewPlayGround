@@ -1,23 +1,34 @@
-var lengthOfLongestSubstring = function(s) {
-
-
-    if(s.length == 1){
-        return 1;
-    }
-    const hashMap = new Map();
-    let left = 0;
+var characterReplacement = function(s, k) {
+    let leftPointer = 0;
     let max = 0;
+    let hashMap = {}
+    let maxFreq = 0
 
-    for(let i =0; i< s.length; i++){
-        if(hashMap.has(s[i]) && hashMap.get(s[i]) >= left) {
-            left = hashMap.get(s[i])+1;
+
+    for(let rightPointer = 0; rightPointer < s.length; rightPointer++){
+        hashMap[s[rightPointer]] = (hashMap[s[rightPointer]] || 0) +1;
+
+
+        maxFreq = Math.max(maxFreq, hashMap[s[rightPointer]])
+  
+        // Move the window from the left until reaching `k` replacements
+        if (maxFreq + k < rightPointer - leftPointer + 1) {
+          hashMap[s[leftPointer]]--
+          leftPointer++
         }
-        hashMap.set(s[i], i);
-        max = Math.max(max, (i-left)+1)
+  
+
+
+
+        max = Math.max(max, rightPointer-leftPointer+1);
     }
-    return max;
-    
+
+    return max
 };
 
 
-console.log(lengthOfLongestSubstring("abba"))
+console.log(characterReplacement("AAABBBA", 1))
+
+
+
+// 2+1 < 
