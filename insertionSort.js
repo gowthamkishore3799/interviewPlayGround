@@ -1,5 +1,7 @@
 var insertionSort = (nums)=>{
-
+    /**
+     * Insertion sort starts with i=1, compares the below elments, and takes the min element and places the element in place....
+     */
     for(let i=1; i<nums.length; i++){
         
 
