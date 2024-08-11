@@ -21,8 +21,6 @@ function diagonalDifference(arr) {
     while (i >= 0 && i < arr.length && j >= 0 && j < arr.length) {
 
         rightDiagonal = rightDiagonal + arr[i][j];
-
-        console.log(arr[i][j])
         i = i+1;
         j = j-1;
 
