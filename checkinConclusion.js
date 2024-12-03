@@ -25,9 +25,7 @@ var findWordOccurence = function(word){
     let counter = 0;
 
     for(let char of word){
-        if(!hashMap.has(char)){
-            counter++;
-        }
+        counter++;
         hashMap.set(char, (hashMap.get(char)?? 0) +1)
 
     }
@@ -40,23 +38,52 @@ var findWordOccurence = function(word){
 
 
 var checkInclusion = function(s1, s2) {
-    const { hashMap, counter } = findWordOccurence(s1);
+    let { hashMap, counter } = findWordOccurence(s1);
 
 
 
-    for(let i=0; i< s2.length-s1.length+1; i++){
-        let j = i;
+    let i = 0, j;
+
+    if(s2.length < s1.length){
+        return false;
+    }
 
 
-        while(j< s1.length){
 
+
+    while(i<=s2.length-s1.length){
+
+        console.log(i, j)
+        if(counter == 0){
+            return true;
+        }
+        if(!hashMap.has(s2[i])){
+            i++;
+        } else if(j>i && (!hashMap.has(s2[j]) || hashMap.get(s2[j]) <=0)){
+                if(hashMap.has(s2[i])){
+                    hashMap.set(s2[i], hashMap.get(s2[i])+1);
+                    counter++;
+                }
+                i++;
+        }
+         else if(j>i && (hashMap.has(s2[j]) && hashMap.get(s2[j])>0)) {
+            hashMap.set(s2[j], hashMap.get(s2[j])-1);
+            counter--;
+            j++;
+        }else{
+            hashMap.set(s2[i], hashMap.get(s2[i])-1);
+            counter--;
+            j = i+1;
         }
     }
+
+
+
+    return false;
 };
 
 
 
-console.log(checkInclusion("ab", "eidbaooo"))
+console.log(checkInclusion("ab", "eidbcabooo"))
 
-8-2
-6
+
