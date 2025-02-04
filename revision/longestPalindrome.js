@@ -1,32 +1,4 @@
-/**
- * 
- * 
- * 
- * aba
- * 
- * 
- * a
- * 
- * 
- * for 2, character should be 2
- * 
- * for 3, any cgaracter should be 2 + 1
- * for 4, any character should be 2, 2
- * 
- * for 5 any cgarcater should be 4+ 1
- * 
- * for 6, any cgaractcer should be 2,2,2
- * 
- * 
- * abccba
- * 
- * 
- * a:2
- * b:2
- * c:2
- * d: 7
- * 
- */
+
 
 var longestPalindrome = function(s) {
     const charCount = {};
@@ -57,3 +29,5 @@ var longestPalindrome = function(s) {
 
    return length;
 };
+
+console.log(longestPalindrome("abbacd"))
