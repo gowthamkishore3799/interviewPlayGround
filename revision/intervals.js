@@ -1,15 +1,23 @@
-var insert = function(intervals, newInterval) {
-    let [newStart, newEnd] = newInterval, left=[], right =[]
+var insert = function (intervals, newInterval) {
+    let i = 0
+    let result = []
 
-    for(let [start, end] of intervals){
-        if(end< newStart) {
-            left.push([start,end])
-        } else if(start>newEnd){
-            right.push([start,end])
-        } else {
-            newStart = Math.min(start, newStart);
-            newEnd = Math.max(end, newEnd)
-        }
+    while (i < intervals.length && intervals[i][1] < newInterval[0]) {
+        result.push(intervals[i])
+        i++
     }
-    return [...left,[newStart, newEnd], ...right]
+
+    while (i < intervals.length && intervals[i][0] <= newInterval[1]) {
+        newInterval[0] = Math.min(intervals[i][0], newInterval[0])
+        newInterval[1] = Math.max(intervals[i][1], newInterval[1])
+        i++
+    }
+    result.push(newInterval)
+
+    while (i < intervals.length) {
+        result.push(intervals[i])
+        i++
+    }
+
+    return result
 };
