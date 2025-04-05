@@ -31,9 +31,6 @@ var longestPalindrome = function(s) {
             r = i+p[i]
         }
 
-
-
-
     }
 
     console.log(p)
