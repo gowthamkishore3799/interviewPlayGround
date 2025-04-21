@@ -1,38 +1,40 @@
 var fractionToDecimal = function(numerator, denominator) {
-    
-    
-    let result = numerator/denominator;
-    
-    if(typeof result == "number" && !Number.isInteger(result)){
+    if (numerator === 0) return "0";
 
-        console.log(result, String(result).split(".")[1])
-        
-        
-        let [num, fraction] = String(result).split(".");
-        
-        
-        if(fraction.length == 1){
-            return `${num}.${fraction}`
-        }
-        
-        
-        
-        let i=0, j=0;
-        
-        
-        while(j<fraction.length){
-            if(fraction.slice(i, j+1) == fraction.slice(j+1, j+(j-i+1)+1)){
-                return  `${num}.(${fraction.slice(i, j+1)})`
-            } else{
-                console.log(fraction.slice(i, j+1), )
-                j++;
-            }
-        }
-      
+    let result = "";
+
+    // Handle sign
+    if (Math.sign(numerator) !== Math.sign(denominator)) {
+        result += "-";
     }
-    
-    
-    return String(result);
-};
 
-console.log(fractionToDecimal(4,333))
+    // Convert to absolute values
+    let num = Math.abs(numerator);
+    let den = Math.abs(denominator);
+
+    // Integer part
+    let integerPart = Math.floor(num / den);
+    result += integerPart;
+
+    let remainder = num % den;
+    if (remainder === 0) return result;
+
+    result += ".";
+
+    let map = new Map(); // To detect repeating remainders
+
+    while (remainder !== 0) {
+        if (map.has(remainder)) {
+            let repeatIndex = map.get(remainder);
+            result = result.slice(0, repeatIndex) + "(" + result.slice(repeatIndex) + ")";
+            break;
+        }
+
+        map.set(remainder, result.length);
+        remainder *= 10;
+        result += Math.floor(remainder / den);
+        remainder = remainder % den;
+    }
+
+    return result;
+};
