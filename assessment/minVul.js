@@ -157,6 +157,8 @@ class MaxHeap{
         
         
         let counter = 0;
+
+        console.log(this.heap, "Heao")
         
          while(counter < this.noOfChanges){
             let topElement = this.#getTopElement();
@@ -187,9 +189,9 @@ class MaxHeap{
 
 
 
-function minVulnerability(nums){
+function minVulnerability(nums, change){
     
-    const heap = new MaxHeap(nums, 3);
+    const heap = new MaxHeap(nums, change);
     const maxheap=  heap.findGCD(0, nums.length-1);
     const minVul = heap.findMinVulnerability();
     
@@ -200,4 +202,4 @@ function minVulnerability(nums){
 
 
 
-minVulnerability([2,2,4,6,9])
+minVulnerability([2, 4, 9, 6], 1)
